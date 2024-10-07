@@ -6,15 +6,19 @@ const ThemeProps = {
   key: "theme",
   light: "light",
   dark: "dark",
+  system: "system",
 } as const;
 
-type Theme = typeof ThemeProps.light | typeof ThemeProps.dark;
+type Theme =
+  | typeof ThemeProps.light
+  | typeof ThemeProps.dark
+  | typeof ThemeProps.system;
 
-export const useTheme = (defaultTheme?: Theme) => {
+export default function useTheme(defaultTheme?: Theme) {
   const [theme, setTheme] = useState<Theme>(() => {
     const storedTheme = localStorage.getItem(ThemeProps.key) as Theme | null;
 
-    return storedTheme || (defaultTheme ?? ThemeProps.light);
+    return storedTheme || (defaultTheme ?? ThemeProps.system);
   });
 
   const isDark = useMemo(() => {
@@ -29,10 +33,21 @@ export const useTheme = (defaultTheme?: Theme) => {
     localStorage.setItem(ThemeProps.key, theme);
     document.documentElement.classList.remove(
       ThemeProps.light,
-      ThemeProps.dark,
+      ThemeProps.dark
     );
-    document.documentElement.classList.add(theme);
-    setTheme(theme);
+
+    if (theme === ThemeProps.system) {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? ThemeProps.dark
+        : ThemeProps.light;
+
+      document.documentElement.classList.add(systemTheme);
+      setTheme(systemTheme);
+    } else {
+      document.documentElement.classList.add(theme);
+      setTheme(theme);
+    }
   };
 
   const setLightTheme = () => _setTheme(ThemeProps.light);
@@ -47,4 +62,4 @@ export const useTheme = (defaultTheme?: Theme) => {
   });
 
   return { theme, isDark, isLight, setLightTheme, setDarkTheme, toggleTheme };
-};
+}
