@@ -1,8 +1,6 @@
-# Vite & NextUI Template
+# Gym Tracker
 
-This is a template for creating applications using Vite and NextUI (v2).
-
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/vite-template)
+Frontend for tracking your workout sessions
 
 ## Technologies Used
 
@@ -14,12 +12,6 @@ This is a template for creating applications using Vite and NextUI (v2).
 - [Framer Motion](https://www.framer.com/motion)
 
 ## How to Use
-
-To clone the project, run the following command:
-
-```bash
-git clone https://github.com/nextui-org/vite-template.git
-```
 
 ### Install dependencies
 
