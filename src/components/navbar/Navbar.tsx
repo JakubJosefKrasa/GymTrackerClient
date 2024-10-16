@@ -8,11 +8,20 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/dropdown";
+import { Avatar } from "@nextui-org/avatar";
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
 import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@nextui-org/button";
+import useAuth from "@/context/useAuth";
 
 const navbarItems = [
   {
@@ -33,11 +42,55 @@ const navbarItems = [
   },
 ];
 
+type NavbarAvatarProps = {
+  email: string;
+  onLogout: () => void;
+};
+
+function NavbarAvatar({ email, onLogout }: NavbarAvatarProps) {
+  return (
+    <Dropdown placement="bottom-end">
+      <DropdownTrigger>
+        <Avatar
+          isBordered
+          as="button"
+          className="transition-transform"
+          color="secondary"
+          name={email}
+          size="sm"
+        />
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Profile Actions" variant="flat">
+        <DropdownItem key="profile" className="h-12">
+          <p className="font-semibold">{email}</p>
+        </DropdownItem>
+        <DropdownItem
+          key="logout"
+          color="danger"
+          className="text-danger"
+          onPress={onLogout}
+        >
+          Odhlásit
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  );
+}
+
 export default function Navbar() {
   const { pathname } = useLocation();
+  const { isLoggedIn, email, setAuth } = useAuth();
+  const navigate = useNavigate();
+
+  function logoutHandler() {
+    setAuth({ isLoggedIn: false, email: null });
+    localStorage.removeItem("auth");
+    navigate("/", { replace: true });
+  }
 
   return (
     <NextUINavbar position="sticky">
+      <NavbarMenuToggle className="md:hidden" />
       <NavbarBrand className="gap-3 max-w-fit">
         <Link
           className="flex justify-start items-center gap-1"
@@ -70,7 +123,13 @@ export default function Navbar() {
 
       <NavbarContent className=" basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        <NavbarMenuToggle className="md:hidden" />
+        {isLoggedIn && email !== null ? (
+          <NavbarAvatar email={email} onLogout={logoutHandler} />
+        ) : (
+          <Button as={Link} color="primary" href="/login" variant="flat">
+            Přihlásit
+          </Button>
+        )}
       </NavbarContent>
 
       <NavbarMenu>
