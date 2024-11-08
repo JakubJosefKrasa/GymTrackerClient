@@ -52,3 +52,71 @@ export const registerSchema = z
   });
 
 export type RegisterType = z.infer<typeof registerSchema>;
+
+export const exerciseSchema = z.object({
+  exerciseName: z
+    .string()
+    .min(
+      3,
+      "Název cviku musí být minimálně 3 znaky dlouhý a maximálně 50 znaků dlouhý!"
+    )
+    .max(
+      50,
+      "Název cviku musí být minimálně 3 znaky dlouhý a maximálně 50 znaků dlouhý!"
+    )
+    .trim(),
+});
+
+export type ExerciseSchemaType = z.infer<typeof exerciseSchema>;
+
+export const trainingPlanFormScheme = z.object({
+  trainingPlanName: z
+    .string()
+    .min(
+      3,
+      "Název tréninkového plánu musí být minimálně 3 znaky dlouhý a maximálně 50 znaků dlouhý!"
+    )
+    .max(
+      50,
+      "Název tréninkového plánu musí být minimálně 3 znaky dlouhý a maximálně 50 znaků dlouhý!"
+    )
+    .trim(),
+});
+
+export type TrainingPlanSchemaType = z.infer<typeof trainingPlanFormScheme>;
+
+export const exerciseSelectionFormSchema = z.object({
+  exercise: z.string({
+    required_error: "Prosím zvolte cvik",
+  }),
+});
+
+export type ExerciseSelectionFormSchemaType = z.infer<
+  typeof exerciseSelectionFormSchema
+>;
+
+export const exerciseSetFormSchema = z.object({
+  repetitions: z.coerce.number({
+    required_error: "Počet opakování nesmí být prázdný",
+    invalid_type_error: "Počet opakování musí být číslo",
+  }),
+  weight: z.coerce.number({
+    required_error: "Počet opakování nesmí být prázdný",
+    invalid_type_error: "Počet opakování musí být číslo",
+  }),
+});
+
+export type ExerciseSetFormSchemaType = z.infer<typeof exerciseSetFormSchema>;
+
+export const workoutSessionFormSchema = z.object({
+  trainingPlan: z.string({
+    required_error: "Prosím zvolte tréninkový plán",
+  }),
+  date: z.date({
+    required_error: "Prosím zvolte datum",
+  }),
+});
+
+export type WorkoutSessionFormSchemaType = z.infer<
+  typeof workoutSessionFormSchema
+>;

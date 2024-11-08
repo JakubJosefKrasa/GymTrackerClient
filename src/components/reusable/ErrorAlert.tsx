@@ -4,7 +4,7 @@ import { semanticColors } from "@nextui-org/theme";
 
 type ErrorAlertProps = {
   errorTitle: string;
-  errorMessages: string[];
+  errorMessages?: string[];
 };
 
 export default function ErrorAlert({
@@ -24,7 +24,7 @@ export default function ErrorAlert({
             {errorTitle}
           </h3>
         </div>
-        {errorMessages.length > 0 && (
+        {errorMessages && errorMessages.length > 0 && (
           <div className="mt-2 ml-7 text-sm text-danger-500">
             <ul role="list" className="list-disc space-y-1 pl-5">
               {errorMessages?.map((errorMessage, index) => (
