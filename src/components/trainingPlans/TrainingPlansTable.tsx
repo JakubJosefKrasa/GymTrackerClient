@@ -6,9 +6,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
+} from "@heroui/dropdown";
+import { Button } from "@heroui/button";
+import { useDisclosure } from "@heroui/modal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -74,10 +74,16 @@ export default function TrainingPlansTable() {
             </Button>
           </DropdownTrigger>
           <DropdownMenu>
-            <DropdownItem onPress={() => handleOpenModalEdit(trainingPlan)}>
+            <DropdownItem
+              onPress={() => handleOpenModalEdit(trainingPlan)}
+              key="edit"
+            >
               Upravit
             </DropdownItem>
-            <DropdownItem onPress={() => handleOpenModalDeletion(trainingPlan)}>
+            <DropdownItem
+              onPress={() => handleOpenModalDeletion(trainingPlan)}
+              key="delete"
+            >
               Smazat
             </DropdownItem>
           </DropdownMenu>

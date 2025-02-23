@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useParams } from "react-router-dom";
 
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { title } from "@/components/primitives";

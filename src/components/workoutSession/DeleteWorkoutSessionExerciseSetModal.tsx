@@ -1,4 +1,4 @@
-import { UseDisclosureProps } from "@nextui-org/modal";
+import { UseDisclosureProps } from "@heroui/modal";
 
 import DeleteItemModal from "@/components/reusable/DeleteItemModal";
 

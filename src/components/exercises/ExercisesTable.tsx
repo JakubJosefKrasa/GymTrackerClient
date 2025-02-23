@@ -5,9 +5,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
+} from "@heroui/dropdown";
+import { Button } from "@heroui/button";
+import { useDisclosure } from "@heroui/modal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -69,10 +69,16 @@ export default function ExercisesTable() {
             </Button>
           </DropdownTrigger>
           <DropdownMenu>
-            <DropdownItem onPress={() => handleOpenModalEdit(exercise)}>
+            <DropdownItem
+              onPress={() => handleOpenModalEdit(exercise)}
+              key="edit"
+            >
               Upravit
             </DropdownItem>
-            <DropdownItem onPress={() => handleOpenModalDeletion(exercise)}>
+            <DropdownItem
+              onPress={() => handleOpenModalDeletion(exercise)}
+              key="delete"
+            >
               Smazat
             </DropdownItem>
           </DropdownMenu>

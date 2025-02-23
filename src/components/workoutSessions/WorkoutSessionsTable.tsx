@@ -6,9 +6,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
+} from "@heroui/dropdown";
+import { Button } from "@heroui/button";
+import { useDisclosure } from "@heroui/modal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -63,6 +63,7 @@ export default function WorkoutSessionsTable() {
             <DropdownMenu>
               <DropdownItem
                 onPress={() => handleOpenModalDeletion(workoutSession)}
+                key="delete"
               >
                 Smazat
               </DropdownItem>

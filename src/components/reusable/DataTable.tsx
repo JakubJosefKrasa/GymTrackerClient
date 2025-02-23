@@ -7,12 +7,9 @@ import {
   TableColumn,
   TableRow,
   TableCell,
-  TableProps,
-  TableHeaderProps,
-  TableBodyProps,
-} from "@nextui-org/table";
-import { Spinner } from "@nextui-org/spinner";
-import { Pagination } from "@nextui-org/pagination";
+} from "@heroui/table";
+import { Spinner } from "@heroui/spinner";
+import { Pagination } from "@heroui/pagination";
 
 import ErrorAlert from "@/components/reusable/ErrorAlert";
 

@@ -5,10 +5,10 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
-import { Accordion, AccordionItem } from "@nextui-org/accordion";
+} from "@heroui/dropdown";
+import { Button } from "@heroui/button";
+import { useDisclosure } from "@heroui/modal";
+import { Accordion, AccordionItem } from "@heroui/accordion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +26,7 @@ import {
   TableColumn,
   TableRow,
   TableCell,
-} from "@nextui-org/table";
+} from "@heroui/table";
 
 type WorkoutSessionTableProps = {
   workoutSession: WorkoutSessionType;
@@ -89,6 +89,7 @@ export default function WorkoutSessionTable({
                   setWorkoutSessionExerciseSetToEdit(workoutSessionExerciseSet);
                   onOpenEdit();
                 }}
+                key="edit"
               >
                 Upravit
               </DropdownItem>
@@ -99,6 +100,7 @@ export default function WorkoutSessionTable({
                   );
                   onOpenDeletion();
                 }}
+                key="delete"
               >
                 Smazat
               </DropdownItem>

@@ -4,9 +4,9 @@ import { isAxiosError } from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 
-import { Input } from "@nextui-org/input";
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
+import { Input } from "@heroui/input";
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";

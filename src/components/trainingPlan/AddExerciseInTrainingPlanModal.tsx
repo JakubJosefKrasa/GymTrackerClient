@@ -4,16 +4,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Spinner } from "@nextui-org/spinner";
+} from "@heroui/modal";
+import { Select, SelectItem } from "@heroui/select";
+import { Spinner } from "@heroui/spinner";
 
 import ErrorAlert from "@/components/reusable/ErrorAlert";
 

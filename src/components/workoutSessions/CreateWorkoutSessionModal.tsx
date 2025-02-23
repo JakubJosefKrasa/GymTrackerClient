@@ -5,17 +5,17 @@ import { parseDate } from "@internationalized/date";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
   useDisclosure,
-} from "@nextui-org/modal";
-import { Spinner } from "@nextui-org/spinner";
-import { Select, SelectItem } from "@nextui-org/select";
-import { DatePicker } from "@nextui-org/date-picker";
+} from "@heroui/modal";
+import { Spinner } from "@heroui/spinner";
+import { Select, SelectItem } from "@heroui/select";
+import { DatePicker } from "@heroui/date-picker";
 
 import {
   workoutSessionFormSchema,

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { semanticColors } from "@nextui-org/theme";
+import { semanticColors } from "@heroui/theme";
 
 type SuccessAlertProps = {
   title: string;

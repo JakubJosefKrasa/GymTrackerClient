@@ -7,9 +7,9 @@ import {
   ModalHeader,
   ModalBody,
   UseDisclosureProps,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/input";
+} from "@heroui/modal";
+import { Button } from "@heroui/button";
+import { Input } from "@heroui/input";
 
 import { exerciseSchema, ExerciseSchemaType } from "@/types/schemas";
 import { ExerciseType, ModalMode } from "@/types/types";

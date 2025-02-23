@@ -1,4 +1,4 @@
-import { UseDisclosureProps } from "@nextui-org/modal";
+import { UseDisclosureProps } from "@heroui/modal";
 
 import TrainingPlanNameModal from "@/components/trainingPlans/TrainingPlanNameModal";
 

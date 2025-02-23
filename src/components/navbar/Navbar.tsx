@@ -1,4 +1,4 @@
-import { Link } from "@nextui-org/link";
+import { Link } from "@heroui/link";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
@@ -7,20 +7,20 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-} from "@nextui-org/navbar";
+} from "@heroui/navbar";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/dropdown";
-import { Avatar } from "@nextui-org/avatar";
-import { link as linkStyles } from "@nextui-org/theme";
+} from "@heroui/dropdown";
+import { Avatar } from "@heroui/avatar";
+import { link as linkStyles } from "@heroui/theme";
 import clsx from "clsx";
 
 import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import useAuth from "@/context/useAuth";
 
 const navbarItems = [
