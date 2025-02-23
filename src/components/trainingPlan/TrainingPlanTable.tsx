@@ -5,9 +5,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
+} from "@heroui/dropdown";
+import { Button } from "@heroui/button";
+import { useDisclosure } from "@heroui/modal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -16,15 +16,15 @@ import DataTable from "@/components/reusable/DataTable";
 import AddExerciseInTrainingPlanModal from "@/components/trainingPlan/AddExerciseInTrainingPlanModal";
 import RemoveExerciseFromTrainingPlanModal from "@/components/trainingPlan/RemoveExerciseFromTrainingPlanModal";
 
-import { ExerciseType, TrainingPlanType } from "@/types/types";
+import { ExerciseType, TrainingPlanExercisesType } from "@/types/types";
 
 type TrainingPlanTableProps = {
-  trainingPlan: TrainingPlanType;
+  trainingPlanExercises: TrainingPlanExercisesType;
   isError: boolean;
 };
 
 export default function TrainingPlanTable({
-  trainingPlan,
+  trainingPlanExercises,
   isError,
 }: TrainingPlanTableProps) {
   const [exerciseToDelete, setExerciseToDelete] = useState<ExerciseType | null>(
@@ -57,7 +57,10 @@ export default function TrainingPlanTable({
               </Button>
             </DropdownTrigger>
             <DropdownMenu>
-              <DropdownItem onPress={() => handleOpenModalDeletion(exercise)}>
+              <DropdownItem
+                onPress={() => handleOpenModalDeletion(exercise)}
+                key="delete"
+              >
                 Smazat
               </DropdownItem>
             </DropdownMenu>
@@ -84,16 +87,18 @@ export default function TrainingPlanTable({
           { label: "Cvik", key: "exercise" },
           { label: "Akce", key: "actions" },
         ]}
-        data={trainingPlan.exercises}
+        data={trainingPlanExercises.exercises}
         emptyTableMessage="Ještě nemáte žádné cviky v tréninkovém plánu"
         renderCell={renderCell}
         topContent={
-          <AddExerciseInTrainingPlanModal trainingPlanId={trainingPlan.id} />
+          <AddExerciseInTrainingPlanModal
+            trainingPlanId={trainingPlanExercises.id}
+          />
         }
         isLoading={false}
         isError={isError}
         errorMessage="Tréninkový plán se nepodařilo načíst"
-        totalItems={trainingPlan.exercises.length}
+        totalItems={trainingPlanExercises.exercises.length}
         showPagination={false}
         isRowClickable={false}
       />
@@ -102,7 +107,7 @@ export default function TrainingPlanTable({
         isOpen={isOpenDeletion}
         onClose={onCloseDeletion}
         exercise={exerciseToDelete}
-        trainingPlanId={trainingPlan.id}
+        trainingPlanId={trainingPlanExercises.id}
       />
     </>
   );

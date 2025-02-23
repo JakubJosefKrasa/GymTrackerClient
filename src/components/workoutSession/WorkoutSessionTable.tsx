@@ -17,7 +17,7 @@ import CreateWorkoutSessionExerciseSetModal from "@/components/workoutSession/Cr
 import EditWorkoutSessionExerciseSetModal from "@/components/workoutSession/EditWorkoutSessionExerciseSetModal";
 import DeleteWorkoutSessionExerciseSetModal from "@/components/workoutSession/DeleteWorkoutSessionExerciseSetModal";
 
-import { ExerciseSetType, WorkoutSessionType } from "@/types/types";
+import { ExerciseSetType, WorkoutSessionExercisesType } from "@/types/types";
 import { subtitle } from "../primitives";
 import {
   Table,
@@ -29,7 +29,7 @@ import {
 } from "@heroui/table";
 
 type WorkoutSessionTableProps = {
-  workoutSession: WorkoutSessionType;
+  workoutSession: WorkoutSessionExercisesType;
 };
 
 type WorkoutSessionExerciseSetIdsType = {

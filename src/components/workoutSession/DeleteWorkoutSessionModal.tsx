@@ -2,12 +2,12 @@ import { UseDisclosureProps } from "@heroui/modal";
 
 import DeleteItemModal from "@/components/reusable/DeleteItemModal";
 
-import { WorkoutSessionType } from "@/types/types";
+import { WorkoutSessionExercisesType } from "@/types/types";
 
 import { useDeleteWorkoutSessionMutation } from "@/api/workoutSessionsHttp";
 
 type DeleteWorkoutSessionModalProps = UseDisclosureProps & {
-  workoutSession: WorkoutSessionType | null;
+  workoutSession: WorkoutSessionExercisesType | null;
 };
 
 export default function DeleteWorkoutSessionModal({

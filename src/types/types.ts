@@ -28,6 +28,9 @@ export type PaginatedItemsType<T> = {
 export type TrainingPlanType = {
   id: number;
   trainingPlanName: string;
+};
+
+export type TrainingPlanExercisesType = TrainingPlanType & {
   exercises: ExerciseType[];
 };
 
@@ -37,24 +40,30 @@ export type ExerciseSetType = {
   weight: number;
 };
 
-export type WorkoutSessionExerciseSetType = {
+export type WorkoutSessionExerciseSetsType = {
   id: number;
   exerciseName: string;
   sets: ExerciseSetType[];
 };
 
-export type WorkoutSessionExerciseType = {
+export type WorkoutSessionExerciseSetType = {
   id: number;
-  exercise: WorkoutSessionExerciseSetType;
+  exercise: WorkoutSessionExerciseSetsType;
 };
 
 export type WorkoutSessionTrainingPlanType = {
   id: number;
   trainingPlanName: string;
-  workoutSessionExercises: WorkoutSessionExerciseType[];
+  workoutSessionExercises: WorkoutSessionExerciseSetType[];
 };
 
 export type WorkoutSessionType = {
+  id: number;
+  date: Date;
+  trainingPlan: TrainingPlanType;
+};
+
+export type WorkoutSessionExercisesType = {
   id: number;
   date: Date;
   trainingPlan: WorkoutSessionTrainingPlanType;

@@ -5,11 +5,9 @@ import { BASE_URL, authAxios, queryClient } from "@/api/http";
 
 import { QUERY_KEYS } from "@/api/queryKeys";
 import { ExerciseSetFormSchemaType } from "@/types/schemas";
-import { WorkoutSessionType } from "@/types/types";
+import { WorkoutSessionExercisesType, WorkoutSessionType } from "@/types/types";
 
 const WORKOUT_SESSIONS_URL = BASE_URL + "workout-sessions";
-
-// TODO: Add return types and error validation + other queries
 
 async function getWorkoutSessions() {
   const response =
@@ -19,7 +17,7 @@ async function getWorkoutSessions() {
 }
 
 async function getWorkoutSessionById(id: number) {
-  const response = await authAxios.get<WorkoutSessionType>(
+  const response = await authAxios.get<WorkoutSessionExercisesType>(
     `${WORKOUT_SESSIONS_URL}/${id}`
   );
 
@@ -35,10 +33,13 @@ async function createWorkoutSession({
   date,
   trainingPlanId,
 }: CreateWorkoutSessionProps) {
-  const promise = authAxios.post(WORKOUT_SESSIONS_URL, {
-    date,
-    trainingPlanId,
-  });
+  const promise = authAxios.post<WorkoutSessionExercisesType>(
+    WORKOUT_SESSIONS_URL,
+    {
+      date,
+      trainingPlanId,
+    }
+  );
 
   toast.promise(promise, {
     loading: `Trénink se ukládá`,
@@ -92,7 +93,7 @@ async function createExerciseSet({
   repetitions,
   weight,
 }: ExerciseSetProps) {
-  const promise = authAxios.post(
+  const promise = authAxios.post<WorkoutSessionExercisesType>(
     `${WORKOUT_SESSIONS_URL}/${workoutSessionId}/workout-session-exercises/${workoutSessionExerciseId}/workout-session-exercise-sets`,
     {
       repetitions,
@@ -125,7 +126,7 @@ async function deleteExerciseSet({
 }: WorkoutSessionIds & {
   workoutSessionExerciseSetId: number;
 }) {
-  const promise = authAxios.delete(
+  const promise = authAxios.delete<WorkoutSessionExercisesType>(
     `${WORKOUT_SESSIONS_URL}/${workoutSessionId}/workout-session-exercises/${workoutSessionExerciseId}/workout-session-exercise-sets/${workoutSessionExerciseSetId}`
   );
 
@@ -156,7 +157,7 @@ async function editExerciseSet({
 }: ExerciseSetProps & {
   workoutSessionExerciseSetId: number;
 }) {
-  const promise = authAxios.patch(
+  const promise = authAxios.patch<WorkoutSessionExercisesType>(
     `${WORKOUT_SESSIONS_URL}/${workoutSessionId}/workout-session-exercises/${workoutSessionExerciseId}/workout-session-exercise-sets/${workoutSessionExerciseSetId}`,
     {
       repetitions,

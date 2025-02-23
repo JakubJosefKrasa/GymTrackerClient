@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useParams } from "react-router-dom";
 
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { title } from "@/components/primitives";
@@ -30,7 +30,7 @@ export default function TrainingPlanPage() {
     content = (
       <>
         <h1 className={title()}>{data.trainingPlanName}</h1>
-        <TrainingPlanTable trainingPlan={data} isError={isError} />
+        <TrainingPlanTable trainingPlanExercises={data} isError={isError} />
       </>
     );
   }

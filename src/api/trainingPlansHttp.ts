@@ -4,7 +4,11 @@ import { toast } from "sonner";
 import { BASE_URL, authAxios, queryClient } from "@/api/http";
 
 import { QUERY_KEYS } from "@/api/queryKeys";
-import { PaginatedItemsType, TrainingPlanType } from "@/types/types";
+import {
+  PaginatedItemsType,
+  TrainingPlanType,
+  TrainingPlanExercisesType,
+} from "@/types/types";
 import { TrainingPlanSchemaType } from "@/types/schemas";
 
 const TRAINING_PLANS_URL = BASE_URL + "training-plans";
@@ -18,7 +22,7 @@ async function getTrainingPlans(pageNumber: number, pageSize: number) {
 }
 
 async function getTrainingPlanById(id: number) {
-  const response = await authAxios.get<TrainingPlanType>(
+  const response = await authAxios.get<TrainingPlanExercisesType>(
     `${TRAINING_PLANS_URL}/${id}`
   );
 
@@ -118,7 +122,7 @@ async function addExerciseInTrainingPlan({
   trainingPlanId,
   exerciseId,
 }: AddExerciseInTrainingPlanProps) {
-  const promise = authAxios.put<TrainingPlanType>(
+  const promise = authAxios.put<TrainingPlanExercisesType>(
     `${TRAINING_PLANS_URL}/${trainingPlanId}/exercises/${exerciseId}`
   );
 
