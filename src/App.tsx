@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useLocale } from "@react-aria/i18n";
 import { Toaster } from "sonner";
 
@@ -12,11 +13,20 @@ import TrainingPlansPage from "@/pages/TrainingPlans";
 import WorkoutSessionsPage from "@/pages/WorkoutSessions";
 import TrainingPlanPage from "@/pages/TrainingPlan";
 import WorkoutSessionPage from "@/pages/WorkoutSession";
+
+import { setupAuthAxiosInterceptors } from "@/api/http";
 import useTheme from "@/hooks/useTheme";
+import useAuth from "./hooks/useAuth";
 
 function App() {
   const { locale, direction } = useLocale();
+  const nagivate = useNavigate();
   const { theme } = useTheme();
+  const { setAuth } = useAuth();
+
+  useEffect(() => {
+    setupAuthAxiosInterceptors(nagivate, setAuth);
+  }, [nagivate, setAuth]);
 
   return (
     <div lang={locale} dir={direction}>
