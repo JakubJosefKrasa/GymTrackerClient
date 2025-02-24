@@ -12,12 +12,15 @@ import TrainingPlansPage from "@/pages/TrainingPlans";
 import WorkoutSessionsPage from "@/pages/WorkoutSessions";
 import TrainingPlanPage from "@/pages/TrainingPlan";
 import WorkoutSessionPage from "@/pages/WorkoutSession";
+import useTheme from "@/hooks/useTheme";
 
 function App() {
   const { locale, direction } = useLocale();
+  const { theme } = useTheme();
+
   return (
     <div lang={locale} dir={direction}>
-      <Toaster richColors />
+      <Toaster richColors theme={theme} />
       <Routes>
         <Route element={<IndexPage />} path="/" />
         <Route element={<LoginPage />} path="/login" />

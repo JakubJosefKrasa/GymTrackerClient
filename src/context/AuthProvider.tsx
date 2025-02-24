@@ -1,7 +1,10 @@
-import { PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useState } from "react";
 
 import { AuthContextType, AuthType } from "@/types/types";
-import { AuthContext } from "@/context/authContext";
+
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {

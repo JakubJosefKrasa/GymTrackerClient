@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { SwitchProps, useSwitch } from "@heroui/switch";
 import clsx from "clsx";
 
-import useTheme from "@/hooks/useTheme";
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons/Icons";
+
+import useTheme from "@/hooks/useTheme";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -16,8 +18,7 @@ export default function ThemeSwitch({
   classNames,
 }: ThemeSwitchProps) {
   const [isMounted, setIsMounted] = useState(false);
-
-  const { theme, toggleTheme } = useTheme("system");
+  const { theme, toggleTheme } = useTheme();
 
   const onChange = toggleTheme;
 

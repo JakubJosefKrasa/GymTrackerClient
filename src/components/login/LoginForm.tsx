@@ -17,7 +17,7 @@ import SuccessAlert from "@/components/reusable/SuccessAlert";
 
 import { loginSchema, LoginType } from "@/types/schemas";
 import { useLoginMutation } from "@/api/authHttp";
-import useAuth from "@/context/useAuth";
+import useAuth from "@/hooks/useAuth";
 
 export default function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

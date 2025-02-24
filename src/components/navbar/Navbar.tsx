@@ -21,7 +21,7 @@ import clsx from "clsx";
 import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@heroui/button";
-import useAuth from "@/context/useAuth";
+import useAuth from "@/hooks/useAuth";
 
 const navbarItems = [
   {
