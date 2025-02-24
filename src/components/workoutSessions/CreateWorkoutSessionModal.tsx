@@ -16,6 +16,7 @@ import {
 import { Spinner } from "@heroui/spinner";
 import { Select, SelectItem } from "@heroui/select";
 import { DatePicker } from "@heroui/date-picker";
+import { Alert } from "@heroui/alert";
 
 import {
   workoutSessionFormSchema,
@@ -24,7 +25,6 @@ import {
 
 import { useGetTrainingPlans } from "@/api/trainingPlansHttp";
 import { useCreateWorkoutSessionMutation } from "@/api/workoutSessionsHttp";
-import ErrorAlert from "../reusable/ErrorAlert";
 
 export default function CreateWorkoutSessionModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -64,7 +64,10 @@ export default function CreateWorkoutSessionModal() {
   if (isErrorTrainingPlans) {
     return (
       <div className="flex justify-center">
-        <ErrorAlert errorTitle="Tréninkové plány které je možné přidat se nepodařilo načíst" />
+        <Alert
+          color="danger"
+          title="Tréninkové plány které je možné přidat se nepodařilo načíst"
+        />
       </div>
     );
   }

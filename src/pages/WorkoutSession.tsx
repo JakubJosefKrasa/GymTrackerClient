@@ -2,11 +2,11 @@ import { ReactNode } from "react";
 import { useParams } from "react-router-dom";
 
 import { Spinner } from "@heroui/spinner";
+import { Alert } from "@heroui/alert";
 
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { title } from "@/components/primitives";
 import WorkoutSessionTable from "@/components/workoutSession/WorkoutSessionTable";
-import ErrorAlert from "@/components/reusable/ErrorAlert";
 
 import { convertDateFormat } from "@/utils/convertDateFormat";
 
@@ -26,7 +26,7 @@ export default function WorkoutSessionPage() {
   } else if (isError) {
     content = (
       <div className="flex place-content-center mt-12">
-        <ErrorAlert errorTitle="Trénink se nepodařilo načíst" />
+        <Alert color="danger" title="Trénink se nepodařilo načíst" />
       </div>
     );
   } else if (isSuccess) {

@@ -7,13 +7,13 @@ import { useForm, Controller } from "react-hook-form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { Alert } from "@heroui/alert";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
+import ErrorList from "@/components/reusable/ErrorList";
 import FormCard from "@/components/reusable/FormCard";
-import ErrorAlert from "@/components/reusable/ErrorAlert";
-import SuccessAlert from "@/components/reusable/SuccessAlert";
 
 import { loginSchema, LoginType } from "@/types/schemas";
 import { useLoginMutation } from "@/api/authHttp";
@@ -133,12 +133,12 @@ export default function LoginForm() {
         </Link>
       </p>
       {isError && (
-        <ErrorAlert
-          errorTitle="Přihlášení se nezdařilo"
-          errorMessages={errorMessages}
+        <Alert
+          title="Přihlášení se nezdařilo!"
+          description={<ErrorList errorMessages={errorMessages} />}
         />
       )}
-      {isSuccess && <SuccessAlert title="Úspěšně přihlášen" />}
+      {isSuccess && <Alert color="success" title="Úspěšně přihlášen" />}
     </FormCard>
   );
 }

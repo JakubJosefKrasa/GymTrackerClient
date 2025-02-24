@@ -6,13 +6,13 @@ import { useForm, Controller } from "react-hook-form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { Alert } from "@heroui/alert";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import FormCard from "@/components/reusable/FormCard";
-import ErrorAlert from "@/components/reusable/ErrorAlert";
-import SuccessAlert from "@/components/reusable/SuccessAlert";
+import ErrorList from "@/components/reusable/ErrorList";
 
 import { registerSchema, RegisterType } from "@/types/schemas";
 import { useRegisterMutation } from "@/api/authHttp";
@@ -160,12 +160,13 @@ export default function RegisterForm() {
         </Link>
       </p>
       {isError && (
-        <ErrorAlert
-          errorTitle="Registrace se nezdařila"
-          errorMessages={errorMessages}
+        <Alert
+          color="danger"
+          title="Registrace se nezdařila!"
+          description={<ErrorList errorMessages={errorMessages} />}
         />
       )}
-      {isSuccess && <SuccessAlert title="Účet byl úspěšně vytvořen" />}
+      {isSuccess && <Alert color="success" title="Účet byl úspěšně vytvořen" />}
     </FormCard>
   );
 }

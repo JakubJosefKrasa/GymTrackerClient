@@ -13,9 +13,8 @@ import {
   useDisclosure,
 } from "@heroui/modal";
 import { Select, SelectItem } from "@heroui/select";
+import { Alert } from "@heroui/alert";
 import { Spinner } from "@heroui/spinner";
-
-import ErrorAlert from "@/components/reusable/ErrorAlert";
 
 import {
   exerciseSelectionFormSchema,
@@ -68,7 +67,10 @@ export default function AddExerciseInTrainingPlanModal({
   if (isErrorExercisesNotInPlan) {
     return (
       <div className="flex justify-center">
-        <ErrorAlert errorTitle="Cviky které je možné přidat se nepodařilo načíst" />
+        <Alert
+          color="danger"
+          title="Cviky které je možné přidat se nepodařilo načíst"
+        />
       </div>
     );
   }

@@ -11,7 +11,7 @@ import {
 import { Spinner } from "@heroui/spinner";
 import { Pagination } from "@heroui/pagination";
 
-import ErrorAlert from "@/components/reusable/ErrorAlert";
+import { Alert } from "@heroui/alert";
 
 type DataTableProps<T> = {
   ariaLabel: string;
@@ -58,7 +58,7 @@ export default function DataTable<T extends { id?: number }>({
   if (isError) {
     return (
       <div className="flex place-content-center mt-12">
-        <ErrorAlert errorTitle={errorMessage} />
+        <Alert color="danger" title={errorMessage} />
       </div>
     );
   }
