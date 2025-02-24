@@ -80,6 +80,7 @@ export default function ExerciseNameModal({
                     control={form.control}
                     render={({ field }) => (
                       <Input
+                        isRequired
                         autoFocus
                         label="Cvik"
                         placeholder="Zadejte cvik"

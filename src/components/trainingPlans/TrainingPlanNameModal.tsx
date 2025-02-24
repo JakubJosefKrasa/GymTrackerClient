@@ -86,6 +86,7 @@ export default function TrainingPlanNameModal({
                     render={({ field }) => (
                       <Input
                         autoFocus
+                        isRequired
                         label="Tréninkový plán"
                         placeholder="Zadejte tréninkový plán"
                         variant="bordered"

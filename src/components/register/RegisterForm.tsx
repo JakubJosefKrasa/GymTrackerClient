@@ -69,6 +69,7 @@ export default function RegisterForm() {
           control={form.control}
           render={({ field }) => (
             <Input
+              autoFocus
               isRequired
               type="text"
               label="Emailová adresa"

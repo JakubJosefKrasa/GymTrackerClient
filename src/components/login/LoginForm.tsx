@@ -74,6 +74,7 @@ export default function LoginForm() {
           control={form.control}
           render={({ field }) => (
             <Input
+              autoFocus
               isRequired
               type="email"
               label="Emailová adresa"
