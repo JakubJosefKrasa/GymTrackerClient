@@ -15,9 +15,14 @@ import FormCard from "@/components/reusable/FormCard";
 import ErrorList from "@/components/reusable/ErrorList";
 
 import { registerSchema, RegisterType } from "@/types/schemas";
+import { SetSelectedTabProps } from "@/types/types";
 import { useRegisterMutation } from "@/api/authHttp";
 
-export default function RegisterForm() {
+type RegisterFormProps = {
+  setSelectedTab: SetSelectedTabProps;
+};
+
+export default function RegisterForm({ setSelectedTab }: RegisterFormProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
@@ -69,7 +74,6 @@ export default function RegisterForm() {
           control={form.control}
           render={({ field }) => (
             <Input
-              autoFocus
               isRequired
               type="text"
               label="Emailová adresa"
@@ -155,7 +159,11 @@ export default function RegisterForm() {
       </form>
       <p className="text-center text-small">
         Již máte účet?{" "}
-        <Link href="/login" size="sm">
+        <Link
+          className="hover:cursor-pointer"
+          onPress={() => setSelectedTab("login")}
+          size="sm"
+        >
           Přihlásit
         </Link>
       </p>

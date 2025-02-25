@@ -73,3 +73,7 @@ export enum ModalMode {
   Create = "CREATE",
   Edit = "Edit",
 }
+
+export type SetSelectedTabProps = React.Dispatch<
+  React.SetStateAction<string | number>
+>;

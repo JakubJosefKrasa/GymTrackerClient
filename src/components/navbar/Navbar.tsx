@@ -126,7 +126,7 @@ export default function Navbar() {
         {isLoggedIn && email !== null ? (
           <NavbarAvatar email={email} onLogout={logoutHandler} />
         ) : (
-          <Button as={Link} color="primary" href="/login" variant="flat">
+          <Button as={Link} color="primary" href="/auth" variant="flat">
             Přihlásit
           </Button>
         )}

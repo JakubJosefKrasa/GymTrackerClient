@@ -36,6 +36,7 @@
     "@heroui/switch": "2.2.12",
     "@heroui/system": "2.4.10",
     "@heroui/table": "2.2.12",
+    "@heroui/tabs": "^2.2.11",
     "@heroui/theme": "2.4.9",
     "@hookform/resolvers": "^3.9.0",
     "@internationalized/date": "^3.5.6",

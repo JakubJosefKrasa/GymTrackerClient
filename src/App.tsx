@@ -6,8 +6,7 @@ import { Toaster } from "sonner";
 import ProtectedRoute from "@/components/protectedRoute/ProtectedRoute";
 
 import IndexPage from "@/pages/Index";
-import LoginPage from "@/pages/Login";
-import RegisterPage from "@/pages/Register";
+import AuthPage from "@/pages/Auth";
 import ExercisesPage from "@/pages/Exercises";
 import TrainingPlansPage from "@/pages/TrainingPlans";
 import WorkoutSessionsPage from "@/pages/WorkoutSessions";
@@ -30,11 +29,10 @@ function App() {
 
   return (
     <div lang={locale} dir={direction}>
-      <Toaster richColors theme={theme} />
+      <Toaster richColors theme={theme} closeButton />
       <Routes>
         <Route element={<IndexPage />} path="/" />
-        <Route element={<LoginPage />} path="/login" />
-        <Route element={<RegisterPage />} path="/register" />
+        <Route element={<AuthPage />} path="/auth" />
         <Route element={<ProtectedRoute />}>
           <Route element={<ExercisesPage />} path="/exercises" />
           <Route element={<TrainingPlansPage />} path="/training-plans" />

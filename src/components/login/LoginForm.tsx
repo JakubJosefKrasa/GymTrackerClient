@@ -16,10 +16,15 @@ import ErrorList from "@/components/reusable/ErrorList";
 import FormCard from "@/components/reusable/FormCard";
 
 import { loginSchema, LoginType } from "@/types/schemas";
+import { SetSelectedTabProps } from "@/types/types";
 import { useLoginMutation } from "@/api/authHttp";
 import useAuth from "@/hooks/useAuth";
 
-export default function LoginForm() {
+type LoginFormProps = {
+  setSelectedTab: SetSelectedTabProps;
+};
+
+export default function LoginForm({ setSelectedTab }: LoginFormProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { setAuth } = useAuth();
   const navigate = useNavigate();
@@ -74,7 +79,6 @@ export default function LoginForm() {
           control={form.control}
           render={({ field }) => (
             <Input
-              autoFocus
               isRequired
               type="email"
               label="Emailová adresa"
@@ -128,7 +132,11 @@ export default function LoginForm() {
       </form>
       <p className="text-center text-small">
         Ještě nemáte účet?{" "}
-        <Link href="/register" size="sm">
+        <Link
+          className="hover:cursor-pointer"
+          onPress={() => setSelectedTab("register")}
+          size="sm"
+        >
           Vytvořit
         </Link>
       </p>
