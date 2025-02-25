@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -9,7 +10,7 @@ import {
   UseDisclosureProps,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
+import { NumberInput } from "@heroui/number-input";
 
 import {
   exerciseSetFormSchema,
@@ -27,16 +28,19 @@ type ExerciseNameModalProps = UseDisclosureProps & {
   workoutSessionId?: number;
   workoutSessionExerciseId?: number;
   workoutSessionExerciseSetId?: number | null;
+  currentWeight?: number;
+  currentRepetitions?: number;
 };
 
 export default function WorkoutSessionExerciseSetModal({
   isOpen,
   onClose,
   mode,
-
   workoutSessionId,
   workoutSessionExerciseId,
   workoutSessionExerciseSetId,
+  currentWeight,
+  currentRepetitions,
 }: ExerciseNameModalProps) {
   const { mutate: editSet, isPending: isPendingEditSet } =
     useEditExerciseSetMutation();
@@ -47,14 +51,21 @@ export default function WorkoutSessionExerciseSetModal({
     resolver: zodResolver(exerciseSetFormSchema),
     mode: "onTouched",
     defaultValues: {
-      repetitions: 0,
-      weight: 0,
+      repetitions: currentRepetitions !== undefined ? currentRepetitions : 0,
+      weight: currentWeight !== undefined ? currentWeight : 0,
     },
   });
 
-  async function onSubmit(data: ExerciseSetFormSchemaType) {
-    console.log(data);
+  useEffect(() => {
+    if (currentWeight !== undefined && currentRepetitions !== undefined) {
+      form.reset({
+        weight: currentWeight,
+        repetitions: currentRepetitions,
+      });
+    }
+  }, [currentWeight, currentRepetitions, form]);
 
+  async function onSubmit(data: ExerciseSetFormSchemaType) {
     if (
       workoutSessionId !== undefined &&
       workoutSessionExerciseId !== undefined
@@ -111,16 +122,17 @@ export default function WorkoutSessionExerciseSetModal({
                     name="weight"
                     control={form.control}
                     render={({ field }) => (
-                      <Input
-                        type="number"
+                      <NumberInput
                         autoFocus
+                        isRequired
                         label="Váha"
                         placeholder="Zadejte váhu"
                         variant="bordered"
                         isInvalid={form.getFieldState("weight").invalid}
                         errorMessage={form.formState.errors.weight?.message}
-                        value={String(field.value)}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        endContent={"kg"}
+                        value={field.value}
+                        onValueChange={(e) => field.onChange(e)}
                       />
                     )}
                   />
@@ -128,8 +140,8 @@ export default function WorkoutSessionExerciseSetModal({
                     name="repetitions"
                     control={form.control}
                     render={({ field }) => (
-                      <Input
-                        type="number"
+                      <NumberInput
+                        isRequired
                         label="Počet opakování"
                         placeholder="Zadejte počet opakování"
                         variant="bordered"
@@ -137,8 +149,9 @@ export default function WorkoutSessionExerciseSetModal({
                         errorMessage={
                           form.formState.errors.repetitions?.message
                         }
-                        value={String(field.value)}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        endContent={"x"}
+                        value={field.value}
+                        onValueChange={(e) => field.onChange(e)}
                       />
                     )}
                   />

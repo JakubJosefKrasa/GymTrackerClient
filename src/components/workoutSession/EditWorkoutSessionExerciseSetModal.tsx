@@ -8,6 +8,8 @@ type EditWorkoutSessionExerciseSetModalProps = UseDisclosureProps & {
   workoutSessionId?: number;
   workoutSessionExerciseId?: number;
   workoutSessionExerciseSetId?: number | null;
+  currentWeight?: number;
+  currentRepetitions?: number;
 };
 
 export default function EditWorkoutSessionExerciseSetModal({
@@ -16,6 +18,8 @@ export default function EditWorkoutSessionExerciseSetModal({
   workoutSessionId,
   workoutSessionExerciseId,
   workoutSessionExerciseSetId,
+  currentWeight,
+  currentRepetitions,
 }: EditWorkoutSessionExerciseSetModalProps) {
   return (
     <WorkoutSessionExerciseSetModal
@@ -25,6 +29,8 @@ export default function EditWorkoutSessionExerciseSetModal({
       workoutSessionId={workoutSessionId}
       workoutSessionExerciseId={workoutSessionExerciseId}
       workoutSessionExerciseSetId={workoutSessionExerciseSetId}
+      currentWeight={currentWeight}
+      currentRepetitions={currentRepetitions}
     />
   );
 }

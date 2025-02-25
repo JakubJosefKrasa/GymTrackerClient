@@ -35,6 +35,8 @@ type WorkoutSessionTableProps = {
 type WorkoutSessionExerciseSetIdsType = {
   workoutSessionExerciseId: number;
   workoutSessionExerciseSetId: number;
+  weight: number;
+  repetitions: number;
 };
 
 type WorkoutSessionExerciseSetToDeleteType = WorkoutSessionExerciseSetIdsType;
@@ -113,24 +115,32 @@ export default function WorkoutSessionTable({
 
   const renderCell = useCallback(
     (
+      setNumber: number,
       workoutSessionExerciseId: number,
       exerciseSet: ExerciseSetType,
       columnKey: Key
     ) => {
       switch (columnKey) {
+        case "set-number":
+          return setNumber + ".";
+
+        case "weight":
+          return exerciseSet.weight + " kg";
+
+        case "repetitions":
+          return exerciseSet.repetitions + " x";
+
         case "actions":
           return (
             <DropDownContent
               workoutSessionExerciseSet={{
                 workoutSessionExerciseId: workoutSessionExerciseId,
                 workoutSessionExerciseSetId: exerciseSet.id,
+                weight: exerciseSet.weight,
+                repetitions: exerciseSet.repetitions,
               }}
             />
           );
-        case "weight":
-          return exerciseSet.weight + " kg";
-        case "repetitions":
-          return exerciseSet.repetitions + " x";
       }
     },
     []
@@ -152,6 +162,13 @@ export default function WorkoutSessionTable({
               key={workoutSessionExercise.id}
               aria-label={workoutSessionExercise.exercise.exerciseName}
               title={workoutSessionExercise.exercise.exerciseName}
+              subtitle={
+                `${workoutSessionExercise.exercise.sets.length}` +
+                (workoutSessionExercise.exercise.sets.length > 0 &&
+                workoutSessionExercise.exercise.sets.length < 5
+                  ? " série"
+                  : " sérií")
+              }
             >
               <>
                 <Table
@@ -163,6 +180,7 @@ export default function WorkoutSessionTable({
                 >
                   <TableHeader
                     columns={[
+                      { label: "Série", key: "set-number" },
                       { label: "Váha", key: "weight" },
                       { label: "Opakování", key: "repetitions" },
                       { label: "Akce", key: "actions" },
@@ -181,19 +199,20 @@ export default function WorkoutSessionTable({
                     emptyContent="Nemáte žádné série"
                     items={workoutSessionExercise.exercise.sets || []}
                   >
-                    {(item) => (
-                      <TableRow key={item.id}>
+                    {workoutSessionExercise.exercise.sets.map((set, index) => (
+                      <TableRow key={set.id}>
                         {(columnKey) => (
                           <TableCell>
                             {renderCell(
+                              index + 1,
                               workoutSessionExercise.id,
-                              item,
+                              set,
                               columnKey
                             )}
                           </TableCell>
                         )}
                       </TableRow>
-                    )}
+                    ))}
                   </TableBody>
                 </Table>
                 <div className="flex ml-auto mt-4">
@@ -218,6 +237,8 @@ export default function WorkoutSessionTable({
         workoutSessionExerciseSetId={
           workoutSessionExerciseSetToEdit?.workoutSessionExerciseSetId
         }
+        currentWeight={workoutSessionExerciseSetToEdit?.weight}
+        currentRepetitions={workoutSessionExerciseSetToEdit?.repetitions}
       />
 
       <DeleteWorkoutSessionExerciseSetModal
