@@ -2,6 +2,8 @@
 
 Frontend for tracking your workout sessions
 
+Hosted application can be found [here](http://localhost:5173/) first request can take up to 1 min to start the server
+
 ## Technologies Used
 
 - [Vite](https://vitejs.dev/guide/)
