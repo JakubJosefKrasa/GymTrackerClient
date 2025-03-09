@@ -2,7 +2,7 @@
 
 Frontend for tracking your workout sessions
 
-Hosted application can be found [here](http://localhost:5173/) first request can take up to 1 min to start the server
+Hosted application can be found [here](https://timely-melomakarona-f59e39.netlify.app/) first request can take up to 1 min to start the server
 
 ## Technologies Used
 
